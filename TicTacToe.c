@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void win(int player, int winner, int pos[]) {
+    
     printf("\n");
     printf("%c|%c|%c\n", pos[0], pos[1], pos[2]);
     printf("-+-+-\n");
@@ -18,6 +19,7 @@ void win(int player, int winner, int pos[]) {
 }
 
 int main() {
+
     int winner = 0;     // boolean for if a player has won yet (0 or 1)
     int roundCount = 0;  
     int pos[9];         // this is our board (9 cells)
@@ -64,6 +66,7 @@ int main() {
             roundCount++;
         }
 
+        // check if a player has won via 3 horizontal cells
         for (i = 0; i < 9; i++) {
             if (i % 3 == 0) flag = 0;
             if (pos[i] == sign) flag++;
@@ -73,8 +76,8 @@ int main() {
             }
         }
 
-        flag = 0;
-
+        // reset the flag back to 0 to check if a player has won via 3 vertical cells
+        flag = 0; 
         for (i = 0; i < 3; i++) {
             for (k = i; k <= i + 6; k += 3) {
                 if (pos[k] == sign) 
@@ -88,6 +91,7 @@ int main() {
             flag = 0;
         }
 
+        // check if a player has won via 3 diagonal cells
         if ((pos[0] == sign && pos[4] == sign && pos[8] == sign) || (pos[2] == sign && pos[4] == sign && pos[6] == sign)) {
             winner = 1;
             win(player, winner, pos);
